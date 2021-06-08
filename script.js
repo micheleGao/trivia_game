@@ -9,57 +9,52 @@ console.log(results);
 const submit = document.getElementById('submit');
 console.log(submit);
 const score = document.getElementById('score');
-
-
-
-
-
 //object for the questions 
 const trivia_Questions = [
     {
-        question: "What was the first toy to be advertised on television?",
+        question: " 1. What was the first toy to be advertised on television?",
         answers:{ 
             a: "Buzz Light Year", 
             b: "Mr. Potato Head",
             c: "dinosaurs"
         },
-        correctAnswer:"b"
+        correctAnswer:"Mr. Potato Head"
     },
     {
-        question: "What was the first feature-length animated movie ever released?",
+        question: " 2. What was the first feature-length animated movie ever released?",
         answers:{ 
             a: "Toy story", 
             b: "Beauty & the Beast",
             c: "Snow white and the seven dwarfs"
         },
-        correctAnswer:"c" 
+        correctAnswer:"Snow white and the seven dwarfs" 
     },
     {
-        question: " What TV series showed the first interracial kiss on American network television?",
+        question: " 3. What TV series showed the first interracial kiss on American network television?",
         answers:{ 
             a: "Star Trek", 
             b: "Keeping up with the Kardashians",
             c: "Pocahontas"
         },
-        correctAnswer:"c" 
+        correctAnswer:"Star Trek" 
     },
     {
-        question: "Who created Sherlock Holmes?",
+        question: " 4. Who created Sherlock Holmes?",
         answers:{ 
             a: "Sherlock himself.", 
             b: "Arthur Doyle",
             c: "Jason Mamao"
         },
-        correctAnswer:"b" 
+        correctAnswer:"Arthur Doyle" 
     },
     {
-        question: "Which member of the Beatles married Yoko Ono?",
+        question: " 5. Which member of the Beatles married Yoko Ono?",
         answers:{ 
             a: "John Lennon", 
             b: "Chris Rock",
             c: "Ozzy Obourne"
         },
-        correctAnswer:"a"
+        correctAnswer:"John Lennon"
     }
 ];
 
@@ -93,7 +88,7 @@ function populateQuestions(trivia_Questions, triviaContainer){
             const label = document.createElement('label');
             label.innerHTML=
                 `
-                <input type="radio" name="question${i}" value="letter" id="answers">
+                <input type="radio" name="question${i}" value="${trivia_Questions[i].answers[letter]}" id="answers">
                 ${letter}:
                 ${trivia_Questions[i].answers[letter]}
                  `
@@ -101,55 +96,63 @@ function populateQuestions(trivia_Questions, triviaContainer){
         }
         
     }
+    
 }
-
-// console.log(trivia_Questions[1].correctAnswer);
 populateQuestions(trivia_Questions, triviaContainer);
 
+// console.log(trivia_Questions[1].correctAnswer);
+
+
 //needs two parameters to perform the task
-function populateResults(trivia_Questions, triviaContainer){
-    //const answerContainer=document.querySelectorAll('#answers');
-    //console.log(answerContainer);
+function populateResults(trivia_Questions,triviaContainer, populateQuestions){
+    const answerContainer=document.querySelectorAll('#answers');
     //initializing the user's answer for the results later
-    let userAnswer='';
+    //need to select all the possible answers.
+    //possible ways to select to the radio buttons.
+    //const answerContainer=document.querySelectorAll('#answers');
+    const checkedRadio = document.querySelectorAll(`input[type="radio"]:checked`);
+    let userAnswer= '';
     //initialize the score as zero for incrementing later
-    let correctSelection =0;
-    console.log("THIS IS THE USER " +userAnswer +"INPUT")
+    let correctSelection = 0;
     //create a div for the score to show results
     scoreboard = document.createElement('div');
-     scoreboard.innerHTML=`<div> Score: ${correctSelection}</div>`
-    for(let i=0; i<trivia_Questions.length; i++){
-        //need to select all the possible answers.
-        //possible ways to select to the radio buttons.
-        //const answerContainer=document.querySelectorAll('#answers');
-        const checkedRadio = doucument.querySelectorAll(`input[name="questions${i}"]:checked`);
-        console.log("this is all the " + checkedRadio);
+    scoreboard.innerHTML=`<div> Score: ${correctSelection} </div>`
+    //attach the scoreboard to the score tag.
+    score.appendChild(scoreboard);
+    //created a for loop to check the if the boxes were checked.
+    for(let i=0; i<trivia_Questions.length;i++){
         //find the answer selected /checked
-        //look for the three first answers first;
-        
         //first select the radio buttons 
         //radioButton = document.querySelectorAll('#answers');
-        console.log(userAnswer);
         //conditions for the correct answer
-        if(userAnswer === trivia_Questions[i].correctAnswer && checkedRadio){
+        //if the checked radio is equal to the user answer and is right
+        //increment the score.
+        //if the radio checked is incorrect the player does not get the score.
+        // checkedRadio.forEach(value =>{ console.log(value)});
+        if(checkedRadio[i].value === trivia_Questions[i].correctAnswer){
             //increment the score 
-            correctSelection += 20;
-            console.log(correctSelection);
-            //change the color of the correct answers to the 
-            //answerContainer[i].style.color='hotpink';
-        }else{
-            //answerContainer[i].style.color='blue';
+            correctSelection+=20;
+            //appended scoreboard to update the score.
+            console.log('here')
+            console.log(checkedRadio[i].value)
         }
-
+        
     }
+    scoreboard.innerText= ` ->>>>SCORE ::: ${correctSelection} <<<<-`;
 }
-populateResults(triviaContainer, trivia_Questions);
+// populateResults(trivia_Questions, triviaContainer);
+
+//need an update function for the score being incremented.
 //call the function
  //populateQuestions(questions, triviaContainer);
 //event listener
-// submit.onClick = function (){
-//     populateResults(questions, triviaContainer, resultsLog);
-// }
-//<div class="answers">${trivia_Questions[i].answers.answers}</div> 
+submit.onclick = function(event){
+    event.preventDefault();
+    populateResults(trivia_Questions, triviaContainer);
 
-//put labels into one div with a class name, each set of labels together. 
+}
+/* <div class="answers">${trivia_Questions[i].answers.answers}</div> 
+questions, triviaContainer, resultsLog
+put labels into one div with a class name, each set of labels together. 
+const answersPicked = answerContainer[trivia_Questions[i].answers];
+        console.log(answersPicked); */

@@ -1,0 +1,44 @@
+body{
+    background-color: black;
+    color: lightpink;
+    font-size: 25px;
+    font-family: 'Dancing Script', cursive;
+}
+img{
+    position:relative center;
+    border-radius: 30%;
+    padding: 15%;
+    margin: auto;
+    height: 60%;
+    width: 60%;
+}
+div{
+    grid-row: 2;
+    text-align: center;
+    padding-bottom: 10%;
+    padding-top: 10%;
+}
+label{
+    display: block;
+    text-align: center;
+}
+#submit{
+    display:grid;
+    grid-column:1;
+    font-size: 30px;
+    border-radius: 30px;
+    margin: 0 auto;
+    position:center;
+    background-color: hotpink;
+}
+#score{
+    grid-row:1;
+    display:block;
+    text-align: center;
+    border-radius: 30%;;
+    position: center;
+    padding: 5%;
+    color: hotpink;
+    padding-top: none;
+}
+
