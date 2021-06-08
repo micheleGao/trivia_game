@@ -8,6 +8,7 @@ const results = document.getElementById('results');
 console.log(results);
 const submit = document.getElementById('submit');
 console.log(submit);
+const score = document.getElementById('score');
 
 
 
@@ -63,74 +64,92 @@ const trivia_Questions = [
 ];
 
 console.log(trivia_Questions);
+console.log(trivia_Questions[0].question);
+console.log(trivia_Questions[1].answers);
+console.log(trivia_Questions[1].correctAnswer);
 
-
-//functions 
-function createTrivia(){
-    // to store the html output
-    const triviaPrint = [];
-    // for each of the question and each choice to have a button
-    trivia_Questions.forEach(
-        (newQuestion, questionSequence) => {
-            //the array for the answers
-            const possibleAnswers =[];
-            //for each of the possible answers create an html radio button 
-            for(sequence in newQuestion.possibleAnswers){
-                possibleAnswers.push(
-                    `
-                    <label>
-                    <input type="radio" name="questions">${questionSequence}" value= "${sequence}>
-                    ${sequence}:
-                    ${questionSequence.possibleAnswers[sequence]}
-                    </label>
-                    `
-                );
-                console.log(possibleAnswers);
-            }
-            //console.log(newQuestion.possibleAnswers);
-            //push the answers  and questions to the empty array to show up on the html
-            triviaPrint.push(
-                `<div class="questions">${newQuestion.question}</div>
-                <div class="answers">${possibleAnswers.join('')}</div>
-                `
-            );
-            // console.log(triviaPrint);
-            // console.log(possibleAnswers);
-        }
-    
-    );
-    // createTrivia();
-    //put it in html to populate on the page
-    triviaContainer.innerText = triviaPrint.join('');
-}
-
-
-//console.log(createTrivia);
-
-createTrivia(triviaContainer);
-
-
-function showResults(){
-    
-
-}
-
-
-
-
-
-
-
-//evaluating user answers 
-
-
-
-
-
-//event listeners
-//submit.addEventLister('click', showResults);
-
-
-
+//functions
 //This will be self scoring based on the answers.
 // this will need a conditional statement to compare the answers
+
+function populateQuestions(trivia_Questions, triviaContainer){
+    //store and initilize the variable being used
+    // let array = [];
+    // let answers;
+    //for loop for each of the questions
+    for(let i=0; i<trivia_Questions.length; i++){
+        const arrayQuestions =[]
+        arrayQuestions.push(
+            ` <div class="question">${trivia_Questions[i].question}</div>`
+        )
+        triviaContainer.innerHTML += arrayQuestions.join('');
+        //have answers in this array
+        //const answers =[];
+        console.log(trivia_Questions[i].question);
+        console.log(i);
+        // for each of the possible answers add a radio button
+        for(letter in trivia_Questions[i].answers){
+            //create a lable for each of the radio buttons
+            const label = document.createElement('label');
+            label.innerHTML=
+                `
+                <input type="radio" name="question${i}" value="letter" id="answers">
+                ${letter}:
+                ${trivia_Questions[i].answers[letter]}
+                 `
+            triviaContainer.appendChild(label);
+        }
+        
+    }
+}
+
+// console.log(trivia_Questions[1].correctAnswer);
+populateQuestions(trivia_Questions, triviaContainer);
+
+//needs two parameters to perform the task
+function populateResults(trivia_Questions, triviaContainer){
+    //const answerContainer=document.querySelectorAll('#answers');
+    //console.log(answerContainer);
+    //initializing the user's answer for the results later
+    let userAnswer='';
+    //initialize the score as zero for incrementing later
+    let correctSelection =0;
+    console.log("THIS IS THE USER " +userAnswer +"INPUT")
+    //create a div for the score to show results
+    scoreboard = document.createElement('div');
+     scoreboard.innerHTML=`<div> Score: ${correctSelection}</div>`
+    for(let i=0; i<trivia_Questions.length; i++){
+        //need to select all the possible answers.
+        //possible ways to select to the radio buttons.
+        //const answerContainer=document.querySelectorAll('#answers');
+        const checkedRadio = doucument.querySelectorAll(`input[name="questions${i}"]:checked`);
+        console.log("this is all the " + checkedRadio);
+        //find the answer selected /checked
+        //look for the three first answers first;
+        
+        //first select the radio buttons 
+        //radioButton = document.querySelectorAll('#answers');
+        console.log(userAnswer);
+        //conditions for the correct answer
+        if(userAnswer === trivia_Questions[i].correctAnswer && checkedRadio){
+            //increment the score 
+            correctSelection += 20;
+            console.log(correctSelection);
+            //change the color of the correct answers to the 
+            //answerContainer[i].style.color='hotpink';
+        }else{
+            //answerContainer[i].style.color='blue';
+        }
+
+    }
+}
+populateResults(triviaContainer, trivia_Questions);
+//call the function
+ //populateQuestions(questions, triviaContainer);
+//event listener
+// submit.onClick = function (){
+//     populateResults(questions, triviaContainer, resultsLog);
+// }
+//<div class="answers">${trivia_Questions[i].answers.answers}</div> 
+
+//put labels into one div with a class name, each set of labels together. 
