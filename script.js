@@ -104,7 +104,7 @@ populateQuestions(trivia_Questions, triviaContainer);
 
 
 //needs two parameters to perform the task
-function populateResults(trivia_Questions,triviaContainer, populateQuestions){
+function populateResults(trivia_Questions){
     const answerContainer=document.querySelectorAll('#answers');
     //initializing the user's answer for the results later
     //need to select all the possible answers.
@@ -115,10 +115,10 @@ function populateResults(trivia_Questions,triviaContainer, populateQuestions){
     //initialize the score as zero for incrementing later
     let correctSelection = 0;
     //create a div for the score to show results
-    scoreboard = document.createElement('div');
-    scoreboard.innerHTML=`<div> Score: ${correctSelection} </div>`
+    //scoreboard = document.createElement('div');
+    //scoreboard.innerHTML=`<div> ${correctSelection} </div>`
     //attach the scoreboard to the score tag.
-    score.appendChild(scoreboard);
+    //score.appendChild(scoreboard);
     //created a for loop to check the if the boxes were checked.
     for(let i=0; i<trivia_Questions.length;i++){
         //find the answer selected /checked
@@ -136,9 +136,13 @@ function populateResults(trivia_Questions,triviaContainer, populateQuestions){
             console.log('here')
             console.log(checkedRadio[i].value)
         }
+        if(correctSelection <20){
+            losingState();
+        }
+
         
     }
-    scoreboard.innerText= ` ->>>>SCORE ::: ${correctSelection} <<<<-`;
+    score.innerText= `->>>>SCORE ::: ${correctSelection} <<<<-`;
 }
 // populateResults(trivia_Questions, triviaContainer);
 
@@ -151,6 +155,65 @@ submit.onclick = function(event){
     populateResults(trivia_Questions, triviaContainer);
 
 }
+document.addEventListener(
+    "click",
+    function(event) {
+      // If user clicks start then close modal by calling closeModal()
+      if (
+        event.target.matches(".btn-close") ||
+        !event.target.closest(".modal")
+      ) {
+        closeModal()
+      }
+    },
+    false
+  )
+  
+  function closeModal() {
+    document.querySelector(".modal").style.display = "none";
+  }
+
+  // creating a timer for a game.
+  //update the time to every 60 seconds
+ 
+ let time = 10;
+ let timer= document.getElementById('timer');
+ const countdown = setInterval(function(){
+    time --;
+    document.getElementById('timer').innerHTML = time;
+    if (time ===0) clearInterval(countdown);
+ }, 1000);
+
+ const restartButton = document.getElementById('restart');
+ function restart(event){
+    event.preventDefault();
+    if(event.target.matches('#restart')){
+        const checkedRadio = document.querySelectorAll(`input[type="radio"]:checked`);
+        checkedRadio.forEach(button => button.checked=false);
+        console.log('hi')
+        let time = 10;
+        let timer= document.getElementById('timer');
+        const countdown = setInterval(function(){
+        time --;
+        document.getElementById('timer').innerHTML = time;
+        if (time ===0) clearInterval(countdown);
+        }, 1000);
+    }
+
+}
+restartButton.addEventListener('click', restart);
+
+function losingState(){
+        let time = 10;
+        let timer= document.getElementById('timer');
+        const countdown = setInterval(function(){
+        time --;
+        document.getElementById('timer').innerHTML = time;
+        if (time ===0) clearInterval(countdown);
+        }, 1000);
+}
+//triviaContainer, populateQuestions,
+
 /* <div class="answers">${trivia_Questions[i].answers.answers}</div> 
 questions, triviaContainer, resultsLog
 put labels into one div with a class name, each set of labels together. 

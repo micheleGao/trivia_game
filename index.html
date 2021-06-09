@@ -7,18 +7,66 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
-    <title>Trivia_Game</title>
+    <title>Trivia Game</title>
 </head>
 <body>
+    <!-- bootstrap -->
+
+      <!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Trivia Game</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">START-GAME</button>
+        </div>
+        <div class="modal-body">
+            Before, we start lets get a little familiar with the game.
+            There will be five questions, you must click on an answer before submitting.
+            Once, you have submitted your answers, you will have your score displayed at the bottom of the page.
+            Press the start button!
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- bootstrap -->
+    
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR70mYHxEMmI2zM-Gd_bKIY_d1ocprTNN8mP2yKmas9s9o1PtaSerDsYrnfVaoign028xk&usqp=CAU" alt="trivia" class="center">
+    
+    <span id="timer"> TIME :::: 00:10</span>
     <div id="trivia"></div>
     <button id="submit"> submit </button>
     <div id="results"></div>
     <div id="score">
-        <span class="material-icons-outlined">
-        track_changes
-        </span>
+        Your Score:
     </div>
+    <!-- bootstrap -->
+    <!-- Button trigger modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> end of game </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id= "restart">restart</button>
+        </div>
+        <div class="modal-body">
+         If you want to restart game press the restart game button. 
+        </div>
+        <div class="modal-footer">
+        
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- bootstrap -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>   
 
     <script src="script.js"></script>
 </body>

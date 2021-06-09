@@ -7,7 +7,7 @@ body{
 img{
     position:relative center;
     border-radius: 30%;
-    padding: 15%;
+    padding: 20%;
     margin: auto;
     height: 60%;
     width: 60%;
@@ -15,8 +15,8 @@ img{
 div{
     grid-row: 2;
     text-align: center;
-    padding-bottom: 10%;
-    padding-top: 10%;
+    padding-bottom: 5%;
+    padding-top: 5%;
 }
 label{
     display: block;
@@ -32,7 +32,7 @@ label{
     background-color: hotpink;
 }
 #score{
-    grid-row:1;
+    grid-row: 1;
     display:block;
     text-align: center;
     border-radius: 30%;;
@@ -41,4 +41,10 @@ label{
     color: hotpink;
     padding-top: none;
 }
-
+#timer{
+    border-radius: 30%;
+    background-color: greenyellow;
+    display:block;
+    text-align:center;
+    color:hotpink;
+}
