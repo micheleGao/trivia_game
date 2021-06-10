@@ -1,4 +1,4 @@
-
+![Trivia Game](./triviagame_screenshot.png)
 # Trivia_game:
 This game was inspired from testings ones memory, or knowledge on the basis of entertainment. These sets of questions that were used are frequently asked in some trivia. 
 
