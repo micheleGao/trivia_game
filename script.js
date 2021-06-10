@@ -86,69 +86,47 @@ function populateQuestions(trivia_Questions, triviaContainer){
         for(letter in trivia_Questions[i].answers){
             //create a lable for each of the radio buttons
             const label = document.createElement('label');
-            label.innerHTML=
-                `
+            label.innerHTML=`
                 <input type="radio" name="question${i}" value="${trivia_Questions[i].answers[letter]}" id="answers">
                 ${letter}:
                 ${trivia_Questions[i].answers[letter]}
                  `
             triviaContainer.appendChild(label);
-        }
-        
-    }
-    
+        }  
+    }   
 }
 populateQuestions(trivia_Questions, triviaContainer);
 
-// console.log(trivia_Questions[1].correctAnswer);
 
-
-//needs two parameters to perform the task
 function populateResults(trivia_Questions){
-    const answerContainer=document.querySelectorAll('#answers');
+    //const answerContainer=document.querySelectorAll('#answers');
     //initializing the user's answer for the results later
     //need to select all the possible answers.
-    //possible ways to select to the radio buttons.
-    //const answerContainer=document.querySelectorAll('#answers');
     const checkedRadio = document.querySelectorAll(`input[type="radio"]:checked`);
     let userAnswer= '';
     //initialize the score as zero for incrementing later
     let correctSelection = 0;
-    //create a div for the score to show results
-    //scoreboard = document.createElement('div');
-    //scoreboard.innerHTML=`<div> ${correctSelection} </div>`
-    //attach the scoreboard to the score tag.
-    //score.appendChild(scoreboard);
     //created a for loop to check the if the boxes were checked.
     for(let i=0; i<trivia_Questions.length;i++){
         //find the answer selected /checked
-        //first select the radio buttons 
-        //radioButton = document.querySelectorAll('#answers');
-        //conditions for the correct answer
-        //if the checked radio is equal to the user answer and is right
-        //increment the score.
-        //if the radio checked is incorrect the player does not get the score.
-        // checkedRadio.forEach(value =>{ console.log(value)});
         if(checkedRadio[i].value === trivia_Questions[i].correctAnswer){
             //increment the score 
             correctSelection+=20;
-            //appended scoreboard to update the score.
-            console.log('here')
-            console.log(checkedRadio[i].value)
         }
         if(correctSelection <20){
             losingState();
+            
         }
+        if(correctSelection === 100){
+            winning();
+        }
+
 
         
     }
     score.innerText= `->>>>SCORE ::: ${correctSelection} <<<<-`;
 }
-// populateResults(trivia_Questions, triviaContainer);
 
-//need an update function for the score being incremented.
-//call the function
- //populateQuestions(questions, triviaContainer);
 //event listener
 submit.onclick = function(event){
     event.preventDefault();
@@ -187,10 +165,10 @@ document.addEventListener(
  const restartButton = document.getElementById('restart');
  function restart(event){
     event.preventDefault();
+    let correctSelection = 0;
     if(event.target.matches('#restart')){
         const checkedRadio = document.querySelectorAll(`input[type="radio"]:checked`);
         checkedRadio.forEach(button => button.checked=false);
-        console.log('hi')
         let time = 10;
         let timer= document.getElementById('timer');
         const countdown = setInterval(function(){
@@ -199,7 +177,7 @@ document.addEventListener(
         if (time ===0) clearInterval(countdown);
         }, 1000);
     }
-
+    score.innerText= `->>>>SCORE ::: ${correctSelection} <<<<-`;
 }
 restartButton.addEventListener('click', restart);
 
@@ -211,11 +189,10 @@ function losingState(){
         document.getElementById('timer').innerHTML = time;
         if (time ===0) clearInterval(countdown);
         }, 1000);
-}
-//triviaContainer, populateQuestions,
+        document.getElementById('losing-state').innerHTML= `You lost! You didn't get above 20! `
 
-/* <div class="answers">${trivia_Questions[i].answers.answers}</div> 
-questions, triviaContainer, resultsLog
-put labels into one div with a class name, each set of labels together. 
-const answersPicked = answerContainer[trivia_Questions[i].answers];
-        console.log(answersPicked); */
+}
+
+function winning(){
+    document.getElementById('Winner').innerHTML=`YOU WON!`
+}
