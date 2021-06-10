@@ -3,11 +3,8 @@ Trivia Game
 ====================*/
 // selecting the Html for the dom later 
 const triviaContainer = document.getElementById('trivia');
-console.log(triviaContainer);
 const results = document.getElementById('results');
-console.log(results);
 const submit = document.getElementById('submit');
-console.log(submit);
 const score = document.getElementById('score');
 //object for the questions 
 const trivia_Questions = [
@@ -57,11 +54,6 @@ const trivia_Questions = [
         correctAnswer:"John Lennon"
     }
 ];
-
-console.log(trivia_Questions);
-console.log(trivia_Questions[0].question);
-console.log(trivia_Questions[1].answers);
-console.log(trivia_Questions[1].correctAnswer);
 
 //functions
 //This will be self scoring based on the answers.
@@ -113,16 +105,13 @@ function populateResults(trivia_Questions){
             //increment the score 
             correctSelection+=20;
         }
-        if(correctSelection <20){
+        if(correctSelection <100){
             losingState();
             
         }
         if(correctSelection === 100){
             winning();
         }
-
-
-        
     }
     score.innerText= `->>>>SCORE ::: ${correctSelection} <<<<-`;
 }
@@ -133,6 +122,7 @@ submit.onclick = function(event){
     populateResults(trivia_Questions, triviaContainer);
 
 }
+//if user clicks start hides modals
 document.addEventListener(
     "click",
     function(event) {
@@ -161,7 +151,8 @@ document.addEventListener(
     document.getElementById('timer').innerHTML = time;
     if (time ===0) clearInterval(countdown);
  }, 1000);
-
+    //the function is for restart button which ultimately clears the radio buttons clicked
+    //the time also resets at ten.
  const restartButton = document.getElementById('restart');
  function restart(event){
     event.preventDefault();
@@ -178,6 +169,8 @@ document.addEventListener(
         }, 1000);
     }
     score.innerText= `->>>>SCORE ::: ${correctSelection} <<<<-`;
+    document.getElementById('losing-state').innerHTML='';
+    document.getElementById('Winner').innerHTML='';
 }
 restartButton.addEventListener('click', restart);
 
@@ -189,10 +182,11 @@ function losingState(){
         document.getElementById('timer').innerHTML = time;
         if (time ===0) clearInterval(countdown);
         }, 1000);
-        document.getElementById('losing-state').innerHTML= `You lost! You didn't get above 20! `
+        document.getElementById('losing-state').innerHTML= `You lost! `
 
 }
-
+//created a function to show the player they have met the requirements and won
 function winning(){
     document.getElementById('Winner').innerHTML=`YOU WON!`
 }
+

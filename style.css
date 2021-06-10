@@ -5,24 +5,26 @@ body{
     font-family: 'Dancing Script', cursive;
 }
 img{
-    position:relative center;
+    
     border-radius: 30%;
     padding: 20%;
     margin: auto;
-    height: 60%;
+    height: 100%;
     width: 60%;
 }
 div{
-    grid-row: 2;
+    grid-column: 2 / span 2;
     text-align: center;
-    padding-bottom: 5%;
-    padding-top: 5%;
+    padding-bottom: 3%;
+    padding-top: 3%;
 }
 label{
+    grid-column: 2 / span 2;
     display: block;
     text-align: center;
 }
 #submit{
+    grid-column: 3;
     display:grid;
     grid-column:1;
     font-size: 30px;
@@ -32,7 +34,8 @@ label{
     background-color: hotpink;
 }
 #score{
-    grid-row: 1;
+    grid-column:1;
+    grid-row: 2;
     display:block;
     text-align: center;
     border-radius: 30%;;
@@ -42,9 +45,18 @@ label{
     padding-top: none;
 }
 #timer{
-    border-radius: 30%;
-    background-color: greenyellow;
+
+    border-radius: 50%;
+    background-color: lightpink;
     display:block;
     text-align:center;
-    color:hotpink;
+    color:darkorchid;
+    width: 20%;
+    margin-left: 40%;
+}
+p{
+    text-align: center;
+}
+#restart{
+    background-color: deeppink;
 }
