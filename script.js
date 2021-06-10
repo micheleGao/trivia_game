@@ -105,7 +105,7 @@ function populateResults(trivia_Questions){
             //increment the score 
             correctSelection+=20;
         }
-        if(correctSelection <100){
+        if(correctSelection < 80){
             losingState();
             
         }
