@@ -1,3 +1,4 @@
+<img width="724" alt="triviagame_screenshot" src="https://user-images.githubusercontent.com/72947727/121595928-cea0e000-ca0c-11eb-8d21-1fcf2ac5a338.png">
 
 # Trivia_game:
 This game was inspired from testings ones memory, or knowledge on the basis of entertainment. These sets of questions that were used are frequently asked in some trivia. 
