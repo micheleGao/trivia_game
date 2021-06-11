@@ -1,4 +1,5 @@
-<img width="875" alt="Screen Shot 2021-06-11 at 9 33 27 AM" src="https://user-images.githubusercontent.com/72947727/121694483-289ab780-ca98-11eb-91c7-ac5d563ebc79.png">
+<img width="686" alt="Screen Shot 2021-06-11 at 9 44 21 AM" src="https://user-images.githubusercontent.com/72947727/121696123-bdea7b80-ca99-11eb-99b6-80e2d1d0501f.png">
+
 
 
 # Trivia_game:
